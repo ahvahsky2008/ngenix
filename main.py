@@ -1,13 +1,13 @@
 from multiprocessing import Pool
-from uuid import uuid4
+from random import choice, randint
+from string import ascii_letters, digits
 from typing import List
+from uuid import uuid4
 from zipfile import ZipFile
 
-from random import randint, choice
-from string import ascii_letters, digits
-from settings import config
-
 from lxml import etree as ET
+
+from settings import config
 
 
 def random_string(size=10, chars=ascii_letters + digits):
@@ -15,10 +15,10 @@ def random_string(size=10, chars=ascii_letters + digits):
 
 
 def create_xml() -> bytes:
-    
+
     xml_id = str(uuid4())
     level_num = str(randint(1, 100))
-    
+
     root = ET.Element("root")
     ET.SubElement(root, "var", name="id", value=xml_id)
     ET.SubElement(root, "var", name="level", value=level_num)
