@@ -6,7 +6,7 @@ from pydantic import BaseSettings, validator
 class GlobalConfig(BaseSettings):
     cnt_zip: int = 50
     cnt_xml: int = 100
-    cnt_parallel_threads: int = 1 #multiprocessing.cpu_count()
+    cnt_parallel_threads: int = multiprocessing.cpu_count()
     output_dir: str = 'output'
     
     @validator("output_dir")
