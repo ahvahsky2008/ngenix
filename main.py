@@ -1,5 +1,3 @@
-import multiprocessing
-
 from multiprocessing import Pool
 from uuid import uuid4
 from typing import List
@@ -92,7 +90,7 @@ def main():
 
     create_archives()
     create_csvs()
-    with multiprocessing.Pool(config.cnt_parallel_threads) as pool:
+    with Pool(config.cnt_parallel_threads) as pool:
         with open(f"{config.output_dir}/levels.csv", "a") as first, \
                 open(f"{config.output_dir}/objects.csv", "a") as second:
             for result in pool.imap_unordered(process_archive, [f"{i}.zip" for i in range(config.cnt_zip)]):
